@@ -1,0 +1,45 @@
+---
+title: "rrBlup for Maize"
+author: "Scott T."
+date: "11/13/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# References:
+We will be using the following reference ([rrBLUP Tutorial](https://pbgworks.org/sites/pbgworks.org/files/Introduction%20to%20Genomic%20Selection%20in%20R.pdf)) for this portion of our project, we will add comments and clarification where needed or where we depart from the demonstration. 
+
+# Set-Up:
+Please install the rrBLUP package with `install.packages('rrBLUP')`, then load the packages with:
+
+```{r setup_2}
+library(rrBLUP)
+```
+
+## Load Sample Files:
+You will have to change the path for yourself, or comment this line out and set it manually in the R terminal.
+Load data with either `read.table` or `read.csv` depending on whether or not you have a .txt or .csv file. You might have to st `header=F` in the read command if the marker file does not have names in the header.
+```{r load_data}
+setwd('/home/scott/Documents/Uni/PhD_Freshman/Foundations_Software/Final_Project/rrBlup_Maize')
+marker_data = read.table(file = 'markers_biallelic_SNPs.tsv', sep = '\t', header = TRUE, row.names = 1)
+marker_data = marker_data * 2
+marker_data = marker_data - 1
+```
+
+# Impute Missing Markers:
+Because rrBLUP does not allow you to have missing markers (NA values) for its `mixed.solve()` command, we need to impute missing markers. The imputed value is the population mean for that marker. The `max.missing` parameter is used to avoid imputing value for individuals(?) with over 50\% missing markers, we don't want to impute with low information. Later we must remove the markers (columns) that did not get any imputed values, i.e they still had some NAs. This is not necesary though, because our data has previously been imputed. 
+
+```{r Impute_Markers}
+#initial_impute = A.mat(marker_data, max.missing=0.5, inpute.method='mean', return.imputed=T)
+```
+
+```{r Drop_Non-Imputed}
+#final_impute = initial_inpute[,-c(colnum, colnum_2)]
+```
+
+```{r Validation and Subsetting}
+
+
+```
