@@ -1,0 +1,7 @@
+# Don't track content of these folders
+someOtherfolder/
+
+
+# Compiled source #
+###################
+markers_biallelic_SNPs.tsv
